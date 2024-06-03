@@ -1,0 +1,227 @@
+
+1. IdP Config
+  o Google
+    - client_id (must be published to google 3rd party app access)
+  o Okta
+    - client_id
+    - client_secret
+    - okta issuer url (published in the OpenID Provider Metadata)
+  o Congnito
+    - client_id
+    - client_secret
+
+2. ACLs
+  o Policy - filters for network and/or service
+    Examples:
+    - RelayMap 
+    - DisableIPv4
+    - RandomizeClientPort
+
+    Policy are Resource Filters:
+      - File Share
+      - Password / Secure Text
+
+  o Rules - define actual grant targets
+    Base Definition:
+    {
+      "action": "accept",
+      "src": [ list-of-sources... ],
+      "proto": "protocol", // optional
+      "dst": [ list-of-destinations... ],
+    }
+
+    Allowable Actions:
+
+    Allowable Src:
+     - Any                *                   No restriction on the source
+     - User               shreya@example.com  All devices currently signed in as the given user
+     - Group              group:example       Same as listing every user in the group explicitly
+     - ZNet IP            100.101.102.103     Only the device that owns the given IP
+     - Subnet CIDR Range  192.168.1.0/24      Any IP within the given subnet
+     - Hosts              my-host             Looks up the ZNet IP or CIDR in the hosts section
+     - Namespace          ns:org:prod         All devices currently assigned the given namespace
+     - Shared users       autogroup:shared    Devices of users having accepted a share invitation for the dest
+     - ZNet members       autogroup:members   Devices of users who are a direct member (not a shared user) of the ZNeg
+
+    Optional Proto:
+    - Internet Group Management (IGMP)             igmp
+    - IPv4 encapsulation                           ipv4, ip-in-ip
+    - Transmission Control (TCP)                   tcp
+    - Exterior Gateway Protocol (EGP)              egp
+    - Any private interior gateway                 igp
+    - User Datagram (UDP)                          udp
+    -optional Generic Routing Encapsulation (GRE)          gre
+    - Encap Security Payload (ESP)                 esp
+    - Authentication Header (AH)                   ah
+    - Stream Control Transmission Protocol (SCTP)  sctp
+
+   Allowable Dest:
+   - Any                 *                    No restriction on the destination
+   - User                shreya@example.com   Any device currently signed in as the given user
+   - Group               group:example        Same as listing every user in the group explicitly
+   - ZNet IP             100.101.102.103      Only the device that owns the given ZNet IP
+   - Subnet CIDR Range   192.168.1.0/24       Any IP within the given subnet
+   - Hosts               my-host              Looks up the ZNet IP in the hosts section
+   - Namespace           ns:org:prod          Any device currently assigned the given namespace
+   - Internet access     autogroup:internet   Access to the internet through exit nodes
+   - Own devices         autogroup:self       Access to devices where the same user is authenticated on both the src and the dst
+                                              This does not include devices the user has namespaces for
+   - ZNet devices        autogroup:members    Access to devices on the ZNet where the user is a direct member (not a shared user)
+
+   Allowable Ports:
+   - Any       *
+   - Single    22
+   - Multiple  80,443
+   - Range     1000-2000
+
+   User Specifications:
+    - Users can be specified in both the source (src) and destination (dst) fields of an access rule and must be referenced
+      using the full email address
+
+   Group Specificiations:
+     "groups": {
+       "group:engineering": [
+         "dave@example.com",
+         "laura@example.com",
+       ],
+       "group:sales": [
+         "brad@example.com",
+         "alice@example.com",
+       ],
+     }
+
+     Host Specfication:
+       - The hosts section lets you define a human-friendly name for an IP address or IP range, to make access rules more readable
+
+    Examples:
+    - Device of given user may talk on port 22
+      {
+        "action": "accept",
+        "src": ["*"],
+        "dst": ["autogroup:self:22"],
+      }
+    - All lab devices can talk to each other, but nothing else.
+      {
+        "action": "accept",
+        "src": ["ns:lab"],
+        "dst": ["ns:lab:*"],
+      }
+
+  o Users
+  o Groups - collection of users
+
+  o Hosts - human readable shorthand for IPAddr
+    "hosts": {
+      "vega": "100.3.4.5",
+      "corp-network": "10.0.0.0/8",
+      "critical-corp-server": "10.0.0.1",
+    },
+
+    "namespaces": {
+      "all-ottawa": "*.region:ottawa:*",
+    },
+
+  o Verify - predict behavior of ACLs to avoid accidental grants
+  "verify": [
+    {
+      "src": "dave@example.com",
+      "accept": ["example-host-1:22", "vega:80"],
+      "deny": ["1.2.3.4:443"],
+    },
+   ]
+
+    ACL: <name>
+      Line #  | Allowed Hosts/Ports | Users/Nodes
+
+  o NS Owners - which users can assign namespaces
+  o Approvals (for routes and exit nodes)
+  o Network policy options
+  o Subnet routers & Exit nodes
+  o Order of precedence
+
+3. Route
+   {
+   	"ip": "100.10.1",
+	"bits": "24"
+   }
+
+   o Range of bits is [0,32] for IPv4 or [0,128] for IPv6
+
+4. DNS
+   Resolver is the configuration for one DNS resolver
+   {
+    "addr": "https://resolver.example.com",      // "tls://resolver.com" for DNS over TCP+TLS
+                                                 // "https://resolver.com/query-tmpl" for DNS over HTTPS
+    "bootstrap-resolution": "[addr1, addr2,...]" // optional suggested resolution
+   }
+
+5. Protocols
+   IP subprotocol as defined by the IANA protocol
+    "ICMPv4"
+    "IGMP"
+    "ICMPv6"
+    "UDP"
+    "TCP"
+    "SCTP"
+    "TSMP"
+  Special constants  
+    "Unknown"
+    "Frag"
+
+
+6. Keys
+   Node level public key management 
+
+   "key": {
+     "pub": "",
+     "expiry": "",
+   }
+
+7. Network Map
+   NetworkMap is the current state of the world
+
+   "networkMap": {
+	 ztnet-name
+
+	 address-list
+
+	 node-statuses
+	 peers
+	 dns-details
+	 route-details
+
+ 	 show-collected-services
+	 health-issue-list
+
+	 relay-mapping
+
+	 acl-list
+	 user-list
+	 domain
+  }
+
+8. ZTNet State
+    One or more ZTNet States communicated to the node to identify unique ZTNets & details therein
+	 ztnet-name
+     is-visible // consider implications of non-visible ztnets to node function
+
+	 dns-details
+	 route-details
+
+ 	 show-collected-services
+
+	 acl-list/policy
+	 domain
+
+9. Directory Service to get Node PubKey
+
+
+Backlog:
+- Node Store and Forward File Sharing (?), Distilled / Watermark'd Doc Image, or Password/Secrets
+
+
+Notes- 
+
+Review namespace mapping
+Validity of Audits for host/node trans
+

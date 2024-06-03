@@ -1,0 +1,80 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+import "ninjapanda/v1/map_field_entry.proto";
+
+message DNSConfig {
+    string namespace                           = 1;
+    bool                   use_local           = 2;
+    bool                   enable_magic_dns    = 3;
+    repeated string        nameserver_ip_addrs = 4;
+    repeated MapFieldEntry search_domain_ns    = 5;
+}
+
+message GetDnsConfigByNamespaceRequest {
+    string namespace = 1;
+}
+
+message GetDnsConfigByNamespaceResponse {
+    DNSConfig dns_config = 1;
+}
+
+message CreateDnsConfigRequest {
+    DNSConfig dns_config = 1;
+}
+
+message CreateDnsConfigResponse {
+    DNSConfig dns_config = 1;
+}
+
+message UpdateDnsConfigRequest {
+    DNSConfig dns_config = 1;
+}
+
+message UpdateDnsConfigResponse {
+    DNSConfig dns_config = 1;
+}
+
+message OverrideLocalDnsRequest {
+    string namespace = 1;
+    bool use_local   = 2;
+}
+
+message OverrideLocalDnsResponse {
+    DNSConfig dns_config = 1;
+}
+
+message DomainNameServersRequest {
+    string namespace         = 1;
+    repeated string ip_addrs = 2;
+}
+
+message DomainNameServersResponse {
+    DNSConfig dns_config = 1;
+}
+
+message MagicDnsRequest {
+    string namespace = 1;
+    bool enable      = 2;
+}
+
+message MagicDnsResponse {
+    DNSConfig dns_config = 1;
+}
+
+message SplitDnsRequest {
+    string namespace                        = 1;
+    repeated MapFieldEntry search_domain_ns = 2;
+}
+
+message SplitDnsResponse {
+    DNSConfig dns_config = 1;
+}
+
+message DeleteDnsConfigRequest {
+    string namespace = 1;
+}
+
+message DeleteDnsConfigResponse {
+}

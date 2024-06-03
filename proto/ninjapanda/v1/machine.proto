@@ -1,0 +1,177 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+import "ninjapanda/v1/namespace.proto";
+import "ninjapanda/v1/preauthkey.proto";
+
+enum RegisterMethod {
+    REGISTER_METHOD_UNSPECIFIED = 0;
+    REGISTER_METHOD_AUTH_KEY    = 1;
+    REGISTER_METHOD_CLI         = 2;
+    REGISTER_METHOD_OIDC        = 3;
+}
+
+message Machine {
+    string          machine_id   = 1;
+    string          machine_key  = 2;
+    string          node_key     = 3;
+    string          session_key  = 4;
+    repeated string ip_addresses = 5;
+    string          name         = 6;
+    Namespace namespace          = 7;
+
+    optional string last_seen              = 8;
+    optional string last_successful_update = 9;
+    optional string expiry                 = 10;
+
+    PreAuthKey pre_auth_key = 11;
+
+    string created_at = 12;
+
+    RegisterMethod register_method = 13;
+
+    reserved 14 to 18;
+
+    // google.protobuf.Timestamp updated_at = 14;
+    // google.protobuf.Timestamp deleted_at = 15;
+
+    // bytes host_info      = 16;
+    // bytes endpoints      = 17;
+    // bytes enabled_routes = 18;
+
+    repeated string forced_tags  = 19;
+    repeated string invalid_tags = 20;
+    repeated string valid_tags   = 21;
+    string          given_name   = 22;
+    bool            online       = 23;
+
+    string          os           = 24;
+    string          os_version   = 25;
+    optional string package      = 26;
+    optional string device_model = 27;
+
+    optional string distro           = 28;
+    optional string distro_version   = 29;
+    optional string distro_code_name = 30;
+
+    string hostname       = 31;
+    string client_version = 32;
+
+    MachineLocation machine_location = 33;
+
+    string              preferred_relay = 34;
+    map<string, double> relay_latency   = 35;
+
+    UserInfo user_info = 36;
+}
+
+message MachineLocation {
+    string city        = 1;
+    string region      = 2;
+    string region_code = 3;
+    string country     = 4;
+
+    double latitude  = 5;
+    double longitude = 6;
+}
+
+message RegisterMachineRequest {
+    string namespace      = 1;
+    string correlation_id = 2;
+}
+
+message RegisterMachineResponse {
+    string  correlation_id = 1;
+    Machine machine        = 2;
+}
+
+message GetMachineRequest {
+    string machine_id = 1;
+}
+
+message GetMachineResponse {
+    Machine machine = 1;
+}
+
+message SetTagsRequest {
+    string          machine_id = 1;
+    repeated string tags       = 2;
+}
+
+message SetTagsResponse {
+    Machine machine = 1;
+}
+
+message DeleteMachineRequest {
+    string machine_id = 1;
+}
+
+message DeleteMachineResponse {
+    string machine_id = 1;
+}
+
+message ExpireMachineRequest {
+    string machine_id = 1;
+}
+
+message ExpireMachineResponse {
+    Machine machine = 1;
+}
+
+message RenameMachineRequest {
+    string machine_id = 1;
+    string new_name   = 2;
+}
+
+message RenameMachineResponse {
+    Machine machine = 1;
+}
+
+message ListMachinesRequest {
+    string namespace = 1;
+}
+
+message ListMachinesResponse {
+    repeated Machine machines = 1;
+}
+
+message MoveMachineRequest {
+    string machine_id = 1;
+    string namespace  = 2;
+}
+
+message MoveMachineResponse {
+    Machine machine = 1;
+}
+
+message UserInfo {
+    string user_info_id = 1;
+    string first_name   = 2;
+    string last_name    = 3;
+    string email        = 4;
+    string display_name = 5;
+    string created_at   = 6;
+}
+
+message AuthorizeMachineRequest {
+    string correlation_id = 1;
+    string namespace      = 2;
+    UserInfo user_info    = 3;
+}
+
+message AuthorizeMachineResponse {
+    Machine machine = 1;
+}
+
+message DebugCreateMachineRequest {
+    string correlation_id  = 1;
+    string namespace       = 2;
+    string          key    = 3;
+    string          name   = 4;
+    repeated string routes = 5;
+}
+
+message DebugCreateMachineResponse {
+    Machine machine = 1;
+}

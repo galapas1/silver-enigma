@@ -1,0 +1,80 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
+
+message Namespace {
+    string                   name                    = 1;
+    string                   external_id             = 2;
+    string                   created_at              = 3;
+    google.protobuf.Duration default_machine_key_ttl = 4;
+}
+
+message GetNamespaceRequest {
+    string name = 1;
+}
+
+message GetNamespaceResponse {
+    Namespace namespace = 1;
+}
+
+message CreateNamespaceRequest {
+    string          name                    = 1;
+    string          external_id             = 2;
+    optional string default_machine_key_ttl = 3;
+}
+
+message CreateNamespaceResponse {
+    Namespace namespace = 1;
+}
+
+message UpdateNamespaceRequest {
+    string name                    = 1;
+    string external_id             = 2;
+    string default_machine_key_ttl = 3;
+}
+
+message UpdateNamespaceResponse {
+    Namespace namespace = 1;
+}
+
+message Namespace_P {
+    string          name                    = 1;
+    string          external_id             = 2;
+    optional string default_machine_key_ttl = 4;
+}
+
+message PatchNamespaceRequest {
+    string original_name                 = 1;
+    Namespace_P namespace                = 2;
+    google.protobuf.FieldMask field_mask = 3;
+}
+
+message PatchNamespaceResponse {
+    Namespace namespace = 1;
+}
+
+message RenameNamespaceRequest {
+    string old_name = 1;
+    string new_name = 2;
+}
+
+message RenameNamespaceResponse {
+    Namespace namespace = 1;
+}
+
+message DeleteNamespaceRequest {
+    string name = 1;
+}
+
+message DeleteNamespaceResponse {
+}
+
+message ListNamespacesRequest {
+}
+
+message ListNamespacesResponse {
+    repeated Namespace namespaces = 1;
+}

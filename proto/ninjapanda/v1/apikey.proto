@@ -1,0 +1,33 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+message ApiKey {
+    string          apikey_id  = 1;
+    string          prefix     = 2;
+    optional string expiration = 3;
+    string          created_at = 4;
+    optional string last_seen  = 5;
+}
+
+message CreateApiKeyRequest {
+    string expiration = 1;
+}
+
+message CreateApiKeyResponse {
+    string api_key = 1;
+}
+
+message ExpireApiKeyRequest {
+    string prefix = 1;
+}
+
+message ExpireApiKeyResponse {
+}
+
+message ListApiKeysRequest {
+}
+
+message ListApiKeysResponse {
+    repeated ApiKey api_keys = 1;
+}

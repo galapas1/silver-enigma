@@ -1,0 +1,321 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+import "google/api/annotations.proto";
+
+import "ninjapanda/v1/acl_policy.proto";
+import "ninjapanda/v1/apikey.proto";
+import "ninjapanda/v1/dns.proto";
+import "ninjapanda/v1/health.proto";
+import "ninjapanda/v1/machine.proto";
+import "ninjapanda/v1/namespace.proto";
+import "ninjapanda/v1/preauthkey.proto";
+import "ninjapanda/v1/relays.proto";
+import "ninjapanda/v1/routes.proto";
+
+service NinjapandaService {
+    rpc GetRelayMap(RelayMapRequest) returns (RelayMapResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/relays"
+        };
+    }
+
+    rpc RefreshRelayMap(RelayMapRequest) returns (RelayMapResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/relays/refresh"
+        };
+    }
+
+    rpc CheckHealth(CheckHealthRequest) returns (CheckHealthResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/health"
+        };
+    }
+
+    rpc GetNamespace(GetNamespaceRequest) returns (GetNamespaceResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/namespace/{name}"
+        };
+    }
+
+    rpc CreateNamespace(CreateNamespaceRequest) returns (CreateNamespaceResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespace"
+            body: "*"
+        };
+    }
+
+    rpc UpdateNamespace(UpdateNamespaceRequest) returns (UpdateNamespaceResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/namespace/{name}"
+            body: "*"
+        };
+    }
+
+    rpc PatchNamespace(PatchNamespaceRequest) returns (PatchNamespaceResponse) {
+        option (google.api.http) = {
+            patch: "/api/v1/namespace"
+            body: "*"
+        };
+    }
+
+    rpc RenameNamespace(RenameNamespaceRequest) returns (RenameNamespaceResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespace/{old_name}/rename/{new_name}"
+        };
+    }
+
+    rpc DeleteNamespace(DeleteNamespaceRequest) returns (DeleteNamespaceResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/namespace/{name}"
+        };
+    }
+
+    rpc ListNamespaces(ListNamespacesRequest) returns (ListNamespacesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/namespace"
+        };
+    }
+
+    rpc ListPreAuthKeys(ListPreAuthKeysRequest) returns (ListPreAuthKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/preauthkey"
+        };
+    }
+
+    rpc CreatePreAuthKey(CreatePreAuthKeyRequest) returns (CreatePreAuthKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/preauthkey"
+            body: "*"
+        };
+    }
+
+    rpc ExpirePreAuthKey(ExpirePreAuthKeyRequest) returns (ExpirePreAuthKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/preauthkey/expire"
+            body: "*"
+        };
+    }
+
+    rpc RevokePreAuthKey(RevokePreAuthKeyRequest) returns (RevokePreAuthKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/preauthkey/revoke"
+            body: "*"
+        };
+    }
+
+    rpc DebugCreateMachine(DebugCreateMachineRequest) returns (DebugCreateMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/debug/machine"
+            body: "*"
+        };
+    }
+
+    rpc GetMachine(GetMachineRequest) returns (GetMachineResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/machine/{machine_id}"
+        };
+    }
+
+    rpc SetTags(SetTagsRequest) returns (SetTagsResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/{machine_id}/tags"
+            body: "*"
+        };
+    }
+
+    rpc RegisterMachine(RegisterMachineRequest) returns (RegisterMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/register"
+        };
+    }
+
+    rpc DeleteMachine(DeleteMachineRequest) returns (DeleteMachineResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/machine/{machine_id}"
+        };
+    }
+
+    rpc ExpireMachine(ExpireMachineRequest) returns (ExpireMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/{machine_id}/expire"
+        };
+    }
+
+    rpc RenameMachine(RenameMachineRequest) returns (RenameMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/{machine_id}/rename/{new_name}"
+        };
+    }
+
+    rpc ListMachines(ListMachinesRequest) returns (ListMachinesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/machine"
+        };
+    }
+
+    rpc MoveMachine(MoveMachineRequest) returns (MoveMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/{machine_id}/namespace"
+        };
+    }
+
+    rpc AuthorizeMachine(AuthorizeMachineRequest) returns (AuthorizeMachineResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/register/callback/{correlation_id}"
+            body: "*"
+        };
+    }
+
+    rpc GetRoutes(GetRoutesRequest) returns (GetRoutesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/routes"
+        };
+    }
+
+    rpc EnableRoute(EnableRouteRequest) returns (EnableRouteResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/routes/{route_id}/enable"
+        };
+    }
+
+    rpc DisableRoute(DisableRouteRequest) returns (DisableRouteResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/routes/{route_id}/disable"
+        };
+    }
+
+    rpc GetMachineRoutes(GetMachineRoutesRequest) returns (GetMachineRoutesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/machine/{machine_id}/routes"
+        };
+    }
+
+    rpc CreateMachineRoutes(CreateMachineRoutesRequest) returns (CreateMachineRoutesResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/machine/{machine_id}/routes"
+            body: "*"
+        };
+    }
+
+    rpc UpdateMachineRoutes(UpdateMachineRoutesRequest) returns (UpdateMachineRoutesResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/machine/{machine_id}/routes"
+            body: "*"
+        };
+    }
+
+    rpc DeleteMachineRoute(DeleteMachineRouteRequest) returns (DeleteMachineRouteResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/machine/{machine_id}/routes/{route_id}"
+        };
+    }
+
+    rpc ListApiKeys(ListApiKeysRequest) returns (ListApiKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/apikey"
+        };
+    }
+
+    rpc CreateApiKey(CreateApiKeyRequest) returns (CreateApiKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/apikey"
+            body: "*"
+        };
+    }
+
+    rpc ExpireApiKey(ExpireApiKeyRequest) returns (ExpireApiKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/apikey/expire"
+            body: "*"
+        };
+    }
+
+    rpc GetACLPolicy(GetACLPolicyRequest) returns (GetACLPolicyResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/aclpolicy/{aclpolicy_id}"
+        };
+    }
+
+    rpc DeleteACLPolicy(DeleteACLPolicyRequest) returns (DeleteACLPolicyResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/aclpolicy/{aclpolicy_id}"
+        };
+    }
+
+    rpc CreateACLPolicy(CreateACLPolicyRequest) returns (CreateACLPolicyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/aclpolicy"
+            body: "*"
+        };
+    }
+
+    rpc UpdateACLPolicy(UpdateACLPolicyRequest) returns (UpdateACLPolicyResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/aclpolicy"
+            body: "*"
+        };
+    }
+
+    rpc ReorderACLPolicy(ReorderACLPolicyRequest) returns (ReorderACLPolicyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/aclpolicy/reorder"
+            body: "*"
+        };
+    }
+
+    rpc GetDnsConfigByNamespace(GetDnsConfigByNamespaceRequest) returns (GetDnsConfigByNamespaceResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/dns/{namespace}"
+        };
+    }
+
+    rpc CreateDnsConfig(CreateDnsConfigRequest) returns (CreateDnsConfigResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/dns"
+            body: "*"
+        };
+    }
+
+    rpc UpdateDnsConfig(UpdateDnsConfigRequest) returns (UpdateDnsConfigResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/dns"
+            body: "*"
+        };
+    }
+
+    rpc OverrideLocalDns(OverrideLocalDnsRequest) returns (OverrideLocalDnsResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/dns/override"
+            body: "*"
+        };
+    }
+
+    rpc DomainNameServers(DomainNameServersRequest) returns (DomainNameServersResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/dns/ns"
+            body: "*"
+        };
+    }
+
+    rpc MagicDns(MagicDnsRequest) returns (MagicDnsResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/dns/magic"
+            body: "*"
+        };
+    }
+
+    rpc SplitDns(SplitDnsRequest) returns (SplitDnsResponse) {
+        option (google.api.http) = {
+            put: "/api/v1/dns/split"
+            body: "*"
+        };
+    }
+
+    rpc DeleteDnsConfig(DeleteDnsConfigRequest) returns (DeleteDnsConfigResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/dns/{namespace}"
+        };
+    }
+}

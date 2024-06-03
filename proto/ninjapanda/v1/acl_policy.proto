@@ -1,0 +1,75 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+import "ninjapanda/v1/map_field_entry.proto";
+
+message ACLPolicy {
+    string aclpolicy_id = 1;
+    uint64 order        = 2;
+
+    map<string, string>    hosts  = 3;
+    repeated MapFieldEntry groups = 4;
+    repeated MapFieldEntry tags   = 5;
+
+    repeated ACL     acls  = 6;
+    repeated ACLTest tests = 7;
+}
+
+message ACL {
+    string          action       = 1;
+    uint64          order        = 2;
+    string          protocol     = 3;
+    string          port         = 4;
+    repeated string sources      = 5;
+    repeated string destinations = 6;
+}
+
+message ACLTest {
+    repeated string source = 1;
+    repeated string accept = 2;
+    repeated string deny   = 3;
+}
+
+message GetACLPolicyRequest {
+    string aclpolicy_id = 1;
+}
+
+message GetACLPolicyResponse {
+    ACLPolicy acl_policy = 1;
+}
+
+message CreateACLPolicyRequest {
+    ACLPolicy acl_policy = 1;
+}
+
+message CreateACLPolicyResponse {
+    ACLPolicy acl_policy = 1;
+}
+
+message UpdateACLPolicyRequest {
+    repeated ACLPolicy acl_policies = 1;
+}
+
+message UpdateACLPolicyResponse {
+    repeated ACLPolicy acl_policies = 1;
+}
+
+message DeleteACLPolicyRequest {
+    string aclpolicy_id = 1;
+}
+
+message DeleteACLPolicyResponse {
+}
+
+message ACLOrder {
+    string aclpolicy_id = 1;
+    uint64 order        = 2;
+}
+
+message ReorderACLPolicyRequest {
+    repeated ACLOrder acl_order = 1;
+}
+
+message ReorderACLPolicyResponse {
+}

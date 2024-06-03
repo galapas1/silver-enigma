@@ -1,0 +1,32 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+message RelayMapRequest {
+}
+
+message Node {
+    string Name     = 1;
+    uint32 RegionID = 2;
+    string HostName = 3;
+    string IPv4     = 4;
+}
+
+message Region {
+    uint32        RegionID   = 1;
+    string        RegionCode = 2;
+    string        RegionName = 3;
+    repeated Node Nodes      = 4;
+}
+
+message Relays {
+    map<string, Region> Regions = 1;
+}
+
+message RelayMap {
+    Relays relays = 1;
+}
+
+message RelayMapResponse {
+    RelayMap relayMap = 1;
+}

@@ -1,0 +1,98 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "license/v1/license.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "LicenseService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "licenseLicenseCheck": {
+      "type": "object",
+      "properties": {
+        "seqId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string"
+        },
+        "context": {
+          "$ref": "#/definitions/licenseLicenseCheckContext"
+        }
+      }
+    },
+    "licenseLicenseCheckAnswer": {
+      "type": "object",
+      "properties": {
+        "seqId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "allowed": {
+          "type": "boolean"
+        },
+        "messageId": {
+          "type": "string"
+        }
+      }
+    },
+    "licenseLicenseCheckContext": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "licenseLicenseCheckResponse": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/licenseLicenseCheckAnswer"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

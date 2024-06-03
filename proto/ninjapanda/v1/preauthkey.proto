@@ -1,0 +1,70 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+enum PreAuthKeyStatus {
+    PRE_AUTH_KEY_STATUS_UNSPECIFIED = 0;
+    PRE_AUTH_KEY_STATUS_VALID       = 1;
+    PRE_AUTH_KEY_STATUS_EXPIRED     = 2;
+    PRE_AUTH_KEY_STATUS_REVOKED     = 3;
+    PRE_AUTH_KEY_STATUS_DEPLETED    = 4;
+}
+
+message PreAuthKey {
+    string pre_auth_key_id = 1;
+    string namespace       = 2;
+    optional string key    = 3;
+
+    string prefix = 4;
+
+    uint64 reuse_count = 5;
+    uint64 used_count  = 6;
+
+    bool ephemeral = 7;
+
+    optional string expiration = 8;
+    string          created_at = 9;
+    optional string revoked_at = 10;
+
+    PreAuthKeyStatus status   = 11;
+    repeated string  acl_tags = 12;
+}
+
+message CreatePreAuthKeyRequest {
+    string namespace            = 1;
+    string          prefix      = 2;
+    uint64          reuse_count = 3;
+    bool            ephemeral   = 4;
+    optional string expiration  = 5;
+    repeated string acl_tags    = 6;
+}
+
+message CreatePreAuthKeyResponse {
+    PreAuthKey pre_auth_key = 1;
+}
+
+message ExpirePreAuthKeyRequest {
+    string namespace       = 1;
+    string pre_auth_key_id = 2;
+}
+
+message ExpirePreAuthKeyResponse {
+    PreAuthKey pre_auth_key = 1;
+}
+
+message RevokePreAuthKeyRequest {
+    string namespace       = 1;
+    string pre_auth_key_id = 2;
+}
+
+message RevokePreAuthKeyResponse {
+    PreAuthKey pre_auth_key = 1;
+}
+
+message ListPreAuthKeysRequest {
+    string namespace = 1;
+}
+
+message ListPreAuthKeysResponse {
+    repeated PreAuthKey pre_auth_keys = 1;
+}

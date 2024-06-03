@@ -1,0 +1,14 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+message HealthCheck {
+    string status = 1;
+}
+
+message CheckHealthRequest {
+}
+
+message CheckHealthResponse {
+    HealthCheck server = 1;
+}

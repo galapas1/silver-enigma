@@ -1,0 +1,150 @@
+# architecture diagram - https://optminc.atlassian.net/wiki/spaces/DEV/pages/edit-v2/174817290
+x-healthcheck: &healthcheck
+  start_period: 15s
+  interval: 10s
+  timeout: 2s
+  retries: 3
+
+services:
+  ninjapanda:
+    container_name: ninjapanda
+    image: ninja-panda
+    healthcheck:
+      test: curl --fail localhost:8080 || exit 1
+      start_period: 5s
+      interval: 10s
+      timeout: 2s
+      retries: 3
+    networks:
+      - ztmesh-network
+    ports:
+      - 8080:8080
+    profiles:
+      - ninjapanda
+  # Jaeger
+  jaeger-all-in-one:
+    container_name: jaeger-all-in-one
+    image: jaegertracing/all-in-one:latest
+    restart: always
+    ports:
+      - "16686:16686"
+      - "14268"
+      - "14250"
+    networks:
+      - ztmesh-network
+    profiles:
+      - otel
+
+  # Zipkin
+  zipkin-all-in-one:
+    container_name: zipkin-all-in-one
+    image: openzipkin/zipkin:latest
+    restart: always
+    ports:
+      - "9411:9411"
+    networks:
+      - ztmesh-network
+    profiles:
+      - otel
+
+  # Collector
+  otel-collector:
+    container_name: otel-collector
+    image: otel/opentelemetry-collector:0.85.0
+    restart: always
+    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    volumes:
+      - ./conf/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "1888:1888" # pprof extension
+      - "8888:8888" # Prometheus metrics exposed by the collector
+      - "8889:8889" # Prometheus exporter metrics
+      - "13133:13133" # health_check extension
+      - "4317:4317" # OTLP gRPC receiver
+      - "55679:55679" # zpages extension
+    depends_on:
+      - jaeger-all-in-one
+      - zipkin-all-in-one
+    networks:
+      - ztmesh-network
+    profiles:
+      - otel
+  redis:
+    container_name: redis
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    #volumes:
+    #  - cache:/data
+    networks:
+      - ztmesh-network
+    profiles:
+      - redis
+  postgres:
+    container_name: postgres
+    image: postgres:14-alpine
+    healthcheck:
+      test: pg_isready -d postgres
+      start_period: 5s
+      interval: 10s
+      timeout: 2s
+      retries: 3
+    user: postgres
+    environment:
+      - POSTGRES_PASSWORD=n1nj@@dm1n
+      - POSTGRES_USER=ninjaadmin
+      - POSTGRES_NAME=ninjapanda
+      - POSTGRES_DB=ninjapanda
+    networks:
+      - ztmesh-network
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - ztmesh-db-volume:/var/lib/postgresql/data
+  kafka-init:
+    container_name: optmate-kafka-init
+    image: bitnami/kafka:latest
+    init: true
+    command: bash ./kafka.create_topics.sh
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      - KAFKA_ADDRESS=kafka:9094
+    volumes:
+      - ./kafka.create_topics.sh:/kafka.create_topics.sh
+
+  kafka:
+    container_name: optmate-kafka
+    image: bitnami/kafka:latest
+    healthcheck:
+      <<: *healthcheck
+      test: /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9094 --describe
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://kafka:9093,DOCKER://kafka:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,DOCKER:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092,DOCKER://kafka:9094
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+      - 9092:9092
+    volumes:
+      - kafka-volume:/bitnami/kafka
+volumes:
+  ztmesh-db-volume:
+    name: optmate-ztmesh-db-volume
+  kafka-volume:
+    name: optmate-kafka-volume
+
+networks:
+  ztmesh-network:
+    name: optmate-ztmesh-network

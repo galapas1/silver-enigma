@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>ninjapanda</h1>
+    <h2>Recent ZTClient versions (1.34.0 and higher)</h2>
+    <p>
+      ZTClient added Fast User Switching in version 1.34 and you can now use the
+      new login command to connect to one or more ninjapanda (and ZTClient)
+      servers. The previously used profiles does not have an effect anymore.
+    </p>
+    <p>Use ZTClient's login command to add your profile:</p>
+    <pre><code>ZTClient login --login-server {{.URL}}</code></pre>
+
+    <h2>Windows registry configuration (1.32.0 and lower)</h2>
+    <p>
+      This page provides Windows registry information for the official Windows
+      ZTClient client.
+    </p>
+
+    <p></p>
+    <p>
+      The registry file will configure ZTClient to use <code>{{.URL}}</code> as
+      its control server.
+    </p>
+
+    <p></p>
+    <h3>Caution</h3>
+    <p>
+      You should always download and inspect the registry file before installing
+      it:
+    </p>
+    <pre><code>curl {{.URL}}/windows/ZTClient.reg</code></pre>
+
+    <h2>Installation</h2>
+    <p>
+      Ninjapanda can be set to the default server by running the registry file:
+    </p>
+
+    <p>
+      <a href="/windows/ZTClient.reg" download="ZTClient.reg"
+        >Windows registry file</a
+      >
+    </p>
+
+    <ol>
+      <li>Download the registry file, then run it</li>
+      <li>Follow the prompts</li>
+      <li>Install and run the official windows ZTClient client</li>
+      <li>
+        When the installation has finished, start ZTClient, and log in by
+        clicking the icon in the system tray
+      </li>
+    </ol>
+    <p>Or</p>
+    <p>
+      Open command prompt with Administrator rights. Issue the following
+      commands to add the required registry entries:
+    </p>
+    <pre>
+      <code>REG ADD "HKLM\Software\ZTClient IPN" /v UnattendedMode /t REG_SZ /d always
+            REG ADD "HKLM\Software\ZTClient IPN" /v LoginURL /t REG_SZ /d "{{.URL}}"</code>
+    </pre>
+    <p>Restart ZTClient and log in.</p>
+
+    <p></p>
+  </body>
+</html>

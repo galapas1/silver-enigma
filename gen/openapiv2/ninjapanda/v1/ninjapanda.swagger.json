@@ -1,0 +1,2624 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ninjapanda/v1/ninjapanda.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NinjapandaService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/aclpolicy": {
+      "post": {
+        "operationId": "NinjapandaService_CreateACLPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateACLPolicyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateACLPolicyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "put": {
+        "operationId": "NinjapandaService_UpdateACLPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateACLPolicyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateACLPolicyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/aclpolicy/reorder": {
+      "post": {
+        "operationId": "NinjapandaService_ReorderACLPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ReorderACLPolicyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ReorderACLPolicyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/aclpolicy/{aclpolicyId}": {
+      "get": {
+        "operationId": "NinjapandaService_GetACLPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetACLPolicyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "aclpolicyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "delete": {
+        "operationId": "NinjapandaService_DeleteACLPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteACLPolicyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "aclpolicyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/apikey": {
+      "get": {
+        "operationId": "NinjapandaService_ListApiKeys",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListApiKeysResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "post": {
+        "operationId": "NinjapandaService_CreateApiKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateApiKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateApiKeyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/apikey/expire": {
+      "post": {
+        "operationId": "NinjapandaService_ExpireApiKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExpireApiKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExpireApiKeyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/debug/machine": {
+      "post": {
+        "operationId": "NinjapandaService_DebugCreateMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DebugCreateMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1DebugCreateMachineRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns": {
+      "post": {
+        "operationId": "NinjapandaService_CreateDnsConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateDnsConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateDnsConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "put": {
+        "operationId": "NinjapandaService_UpdateDnsConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateDnsConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateDnsConfigRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns/magic": {
+      "put": {
+        "operationId": "NinjapandaService_MagicDns",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MagicDnsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1MagicDnsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns/ns": {
+      "put": {
+        "operationId": "NinjapandaService_DomainNameServers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DomainNameServersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1DomainNameServersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns/override": {
+      "put": {
+        "operationId": "NinjapandaService_OverrideLocalDns",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OverrideLocalDnsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1OverrideLocalDnsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns/split": {
+      "put": {
+        "operationId": "NinjapandaService_SplitDns",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SplitDnsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SplitDnsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/dns/{namespace}": {
+      "get": {
+        "operationId": "NinjapandaService_GetDnsConfigByNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDnsConfigByNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "delete": {
+        "operationId": "NinjapandaService_DeleteDnsConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteDnsConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "NinjapandaService_CheckHealth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CheckHealthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine": {
+      "get": {
+        "operationId": "NinjapandaService_ListMachines",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListMachinesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/register": {
+      "post": {
+        "operationId": "NinjapandaService_RegisterMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "correlationId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/register/callback/{correlationId}": {
+      "post": {
+        "operationId": "NinjapandaService_AuthorizeMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AuthorizeMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "correlationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "namespace": {
+                  "type": "string"
+                },
+                "userInfo": {
+                  "$ref": "#/definitions/v1UserInfo"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}": {
+      "get": {
+        "operationId": "NinjapandaService_GetMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "delete": {
+        "operationId": "NinjapandaService_DeleteMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/expire": {
+      "post": {
+        "operationId": "NinjapandaService_ExpireMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExpireMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/namespace": {
+      "post": {
+        "operationId": "NinjapandaService_MoveMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MoveMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/rename/{newName}": {
+      "post": {
+        "operationId": "NinjapandaService_RenameMachine",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RenameMachineResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "newName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/routes": {
+      "get": {
+        "operationId": "NinjapandaService_GetMachineRoutes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMachineRoutesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "post": {
+        "operationId": "NinjapandaService_CreateMachineRoutes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateMachineRoutesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "routes": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1Route"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "put": {
+        "operationId": "NinjapandaService_UpdateMachineRoutes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMachineRoutesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "routes": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1Route"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/routes/{routeId}": {
+      "delete": {
+        "operationId": "NinjapandaService_DeleteMachineRoute",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteMachineRouteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/machine/{machineId}/tags": {
+      "post": {
+        "operationId": "NinjapandaService_SetTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SetTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "machineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/namespace": {
+      "get": {
+        "operationId": "NinjapandaService_ListNamespaces",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListNamespacesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "post": {
+        "operationId": "NinjapandaService_CreateNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateNamespaceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "patch": {
+        "operationId": "NinjapandaService_PatchNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PatchNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PatchNamespaceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/namespace/{name}": {
+      "get": {
+        "operationId": "NinjapandaService_GetNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "delete": {
+        "operationId": "NinjapandaService_DeleteNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "put": {
+        "operationId": "NinjapandaService_UpdateNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "externalId": {
+                  "type": "string"
+                },
+                "defaultMachineKeyTtl": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/namespace/{oldName}/rename/{newName}": {
+      "post": {
+        "operationId": "NinjapandaService_RenameNamespace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RenameNamespaceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "oldName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "newName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/preauthkey": {
+      "get": {
+        "operationId": "NinjapandaService_ListPreAuthKeys",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPreAuthKeysResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      },
+      "post": {
+        "operationId": "NinjapandaService_CreatePreAuthKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePreAuthKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePreAuthKeyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/preauthkey/expire": {
+      "post": {
+        "operationId": "NinjapandaService_ExpirePreAuthKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExpirePreAuthKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExpirePreAuthKeyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/preauthkey/revoke": {
+      "post": {
+        "operationId": "NinjapandaService_RevokePreAuthKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokePreAuthKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RevokePreAuthKeyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/relays": {
+      "get": {
+        "operationId": "NinjapandaService_GetRelayMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RelayMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/relays/refresh": {
+      "get": {
+        "operationId": "NinjapandaService_RefreshRelayMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RelayMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/routes": {
+      "get": {
+        "operationId": "NinjapandaService_GetRoutes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRoutesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/routes/{routeId}/disable": {
+      "post": {
+        "operationId": "NinjapandaService_DisableRoute",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DisableRouteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    },
+    "/api/v1/routes/{routeId}/enable": {
+      "post": {
+        "operationId": "NinjapandaService_EnableRoute",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EnableRouteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NinjapandaService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1ACL": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ACLOrder": {
+      "type": "object",
+      "properties": {
+        "aclpolicyId": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "v1ACLPolicy": {
+      "type": "object",
+      "properties": {
+        "aclpolicyId": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "hosts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MapFieldEntry"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MapFieldEntry"
+          }
+        },
+        "acls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ACL"
+          }
+        },
+        "tests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ACLTest"
+          }
+        }
+      }
+    },
+    "v1ACLTest": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accept": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deny": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ApiKey": {
+      "type": "object",
+      "properties": {
+        "apikeyId": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "expiration": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "lastSeen": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AuthorizeMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1CheckHealthResponse": {
+      "type": "object",
+      "properties": {
+        "server": {
+          "$ref": "#/definitions/v1HealthCheck"
+        }
+      }
+    },
+    "v1CreateACLPolicyRequest": {
+      "type": "object",
+      "properties": {
+        "aclPolicy": {
+          "$ref": "#/definitions/v1ACLPolicy"
+        }
+      }
+    },
+    "v1CreateACLPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "aclPolicy": {
+          "$ref": "#/definitions/v1ACLPolicy"
+        }
+      }
+    },
+    "v1CreateApiKeyRequest": {
+      "type": "object",
+      "properties": {
+        "expiration": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateApiKeyResponse": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateDnsConfigRequest": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1CreateDnsConfigResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1CreateMachineRoutesResponse": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Route"
+          }
+        }
+      }
+    },
+    "v1CreateNamespaceRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "defaultMachineKeyTtl": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        }
+      }
+    },
+    "v1CreatePreAuthKeyRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "reuseCount": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "ephemeral": {
+          "type": "boolean"
+        },
+        "expiration": {
+          "type": "string"
+        },
+        "aclTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1CreatePreAuthKeyResponse": {
+      "type": "object",
+      "properties": {
+        "preAuthKey": {
+          "$ref": "#/definitions/v1PreAuthKey"
+        }
+      }
+    },
+    "v1DNSConfig": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "useLocal": {
+          "type": "boolean"
+        },
+        "enableMagicDns": {
+          "type": "boolean"
+        },
+        "nameserverIpAddrs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "searchDomainNs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MapFieldEntry"
+          }
+        }
+      }
+    },
+    "v1DebugCreateMachineRequest": {
+      "type": "object",
+      "properties": {
+        "correlationId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1DebugCreateMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1DeleteACLPolicyResponse": {
+      "type": "object"
+    },
+    "v1DeleteDnsConfigResponse": {
+      "type": "object"
+    },
+    "v1DeleteMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machineId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DeleteMachineRouteResponse": {
+      "type": "object"
+    },
+    "v1DeleteNamespaceResponse": {
+      "type": "object"
+    },
+    "v1DisableRouteResponse": {
+      "type": "object"
+    },
+    "v1DomainNameServersRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "ipAddrs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1DomainNameServersResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1EnableRouteResponse": {
+      "type": "object"
+    },
+    "v1ExpireApiKeyRequest": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExpireApiKeyResponse": {
+      "type": "object"
+    },
+    "v1ExpireMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1ExpirePreAuthKeyRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "preAuthKeyId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExpirePreAuthKeyResponse": {
+      "type": "object",
+      "properties": {
+        "preAuthKey": {
+          "$ref": "#/definitions/v1PreAuthKey"
+        }
+      }
+    },
+    "v1GetACLPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "aclPolicy": {
+          "$ref": "#/definitions/v1ACLPolicy"
+        }
+      }
+    },
+    "v1GetDnsConfigByNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1GetMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1GetMachineRoutesResponse": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Route"
+          }
+        }
+      }
+    },
+    "v1GetNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        }
+      }
+    },
+    "v1GetRoutesResponse": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Route"
+          }
+        }
+      }
+    },
+    "v1HealthCheck": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListApiKeysResponse": {
+      "type": "object",
+      "properties": {
+        "apiKeys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ApiKey"
+          }
+        }
+      }
+    },
+    "v1ListMachinesResponse": {
+      "type": "object",
+      "properties": {
+        "machines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Machine"
+          }
+        }
+      }
+    },
+    "v1ListNamespacesResponse": {
+      "type": "object",
+      "properties": {
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Namespace"
+          }
+        }
+      }
+    },
+    "v1ListPreAuthKeysResponse": {
+      "type": "object",
+      "properties": {
+        "preAuthKeys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PreAuthKey"
+          }
+        }
+      }
+    },
+    "v1Machine": {
+      "type": "object",
+      "properties": {
+        "machineId": {
+          "type": "string"
+        },
+        "machineKey": {
+          "type": "string"
+        },
+        "nodeKey": {
+          "type": "string"
+        },
+        "sessionKey": {
+          "type": "string"
+        },
+        "ipAddresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        },
+        "lastSeen": {
+          "type": "string"
+        },
+        "lastSuccessfulUpdate": {
+          "type": "string"
+        },
+        "expiry": {
+          "type": "string"
+        },
+        "preAuthKey": {
+          "$ref": "#/definitions/v1PreAuthKey"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "registerMethod": {
+          "$ref": "#/definitions/v1RegisterMethod"
+        },
+        "forcedTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invalidTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "givenName": {
+          "type": "string"
+        },
+        "online": {
+          "type": "boolean"
+        },
+        "os": {
+          "type": "string"
+        },
+        "osVersion": {
+          "type": "string"
+        },
+        "package": {
+          "type": "string"
+        },
+        "deviceModel": {
+          "type": "string"
+        },
+        "distro": {
+          "type": "string"
+        },
+        "distroVersion": {
+          "type": "string"
+        },
+        "distroCodeName": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "clientVersion": {
+          "type": "string"
+        },
+        "machineLocation": {
+          "$ref": "#/definitions/v1MachineLocation"
+        },
+        "preferredRelay": {
+          "type": "string"
+        },
+        "relayLatency": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "userInfo": {
+          "$ref": "#/definitions/v1UserInfo"
+        }
+      }
+    },
+    "v1MachineLocation": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "v1MagicDnsRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "enable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1MagicDnsResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1MapFieldEntry": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1MoveMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1Namespace": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "defaultMachineKeyTtl": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Namespace_P": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "defaultMachineKeyTtl": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Node": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "RegionID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "HostName": {
+          "type": "string"
+        },
+        "IPv4": {
+          "type": "string"
+        }
+      }
+    },
+    "v1OverrideLocalDnsRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "useLocal": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1OverrideLocalDnsResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1PatchNamespaceRequest": {
+      "type": "object",
+      "properties": {
+        "originalName": {
+          "type": "string"
+        },
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace_P"
+        },
+        "fieldMask": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PatchNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        }
+      }
+    },
+    "v1PreAuthKey": {
+      "type": "object",
+      "properties": {
+        "preAuthKeyId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "reuseCount": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "usedCount": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "ephemeral": {
+          "type": "boolean"
+        },
+        "expiration": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "revokedAt": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/v1PreAuthKeyStatus"
+        },
+        "aclTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1PreAuthKeyStatus": {
+      "type": "string",
+      "enum": [
+        "PRE_AUTH_KEY_STATUS_UNSPECIFIED",
+        "PRE_AUTH_KEY_STATUS_VALID",
+        "PRE_AUTH_KEY_STATUS_EXPIRED",
+        "PRE_AUTH_KEY_STATUS_REVOKED",
+        "PRE_AUTH_KEY_STATUS_DEPLETED"
+      ],
+      "default": "PRE_AUTH_KEY_STATUS_UNSPECIFIED"
+    },
+    "v1Region": {
+      "type": "object",
+      "properties": {
+        "RegionID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "RegionCode": {
+          "type": "string"
+        },
+        "RegionName": {
+          "type": "string"
+        },
+        "Nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Node"
+          }
+        }
+      }
+    },
+    "v1RegisterMachineResponse": {
+      "type": "object",
+      "properties": {
+        "correlationId": {
+          "type": "string"
+        },
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1RegisterMethod": {
+      "type": "string",
+      "enum": [
+        "REGISTER_METHOD_UNSPECIFIED",
+        "REGISTER_METHOD_AUTH_KEY",
+        "REGISTER_METHOD_CLI",
+        "REGISTER_METHOD_OIDC"
+      ],
+      "default": "REGISTER_METHOD_UNSPECIFIED"
+    },
+    "v1RelayMap": {
+      "type": "object",
+      "properties": {
+        "relays": {
+          "$ref": "#/definitions/v1Relays"
+        }
+      }
+    },
+    "v1RelayMapResponse": {
+      "type": "object",
+      "properties": {
+        "relayMap": {
+          "$ref": "#/definitions/v1RelayMap"
+        }
+      }
+    },
+    "v1Relays": {
+      "type": "object",
+      "properties": {
+        "Regions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1Region"
+          }
+        }
+      }
+    },
+    "v1RenameMachineResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1RenameNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        }
+      }
+    },
+    "v1ReorderACLPolicyRequest": {
+      "type": "object",
+      "properties": {
+        "aclOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ACLOrder"
+          }
+        }
+      }
+    },
+    "v1ReorderACLPolicyResponse": {
+      "type": "object"
+    },
+    "v1RevokePreAuthKeyRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "preAuthKeyId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1RevokePreAuthKeyResponse": {
+      "type": "object",
+      "properties": {
+        "preAuthKey": {
+          "$ref": "#/definitions/v1PreAuthKey"
+        }
+      }
+    },
+    "v1Route": {
+      "type": "object",
+      "properties": {
+        "routeId": {
+          "type": "string"
+        },
+        "machineId": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "advertised": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SetTagsResponse": {
+      "type": "object",
+      "properties": {
+        "machine": {
+          "$ref": "#/definitions/v1Machine"
+        }
+      }
+    },
+    "v1SplitDnsRequest": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "searchDomainNs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MapFieldEntry"
+          }
+        }
+      }
+    },
+    "v1SplitDnsResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1UpdateACLPolicyRequest": {
+      "type": "object",
+      "properties": {
+        "aclPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ACLPolicy"
+          }
+        }
+      }
+    },
+    "v1UpdateACLPolicyResponse": {
+      "type": "object",
+      "properties": {
+        "aclPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ACLPolicy"
+          }
+        }
+      }
+    },
+    "v1UpdateDnsConfigRequest": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1UpdateDnsConfigResponse": {
+      "type": "object",
+      "properties": {
+        "dnsConfig": {
+          "$ref": "#/definitions/v1DNSConfig"
+        }
+      }
+    },
+    "v1UpdateMachineRoutesResponse": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Route"
+          }
+        }
+      }
+    },
+    "v1UpdateNamespaceResponse": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "$ref": "#/definitions/v1Namespace"
+        }
+      }
+    },
+    "v1UserInfo": {
+      "type": "object",
+      "properties": {
+        "userInfoId": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

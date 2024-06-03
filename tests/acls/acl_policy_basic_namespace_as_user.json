@@ -1,0 +1,18 @@
+{
+    "hosts": {
+        "host-1": "100.100.100.100",
+        "subnet-1": "100.100.101.100/24"
+    },
+
+    "acls": [
+        {
+            "action": "accept",
+            "src": [
+                "testnamespace"
+            ],
+            "dst": [
+                "host-1:*"
+            ]
+        }
+    ]
+}

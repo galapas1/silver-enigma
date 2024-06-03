@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package license;
+option  go_package = "./gen/go/license/";
+
+message LicenseCheckContext {
+    int32 count = 1;
+}
+
+message LicenseCheck {
+    int32                        seq_id  = 1;
+    string                       key     = 2;
+    optional LicenseCheckContext context = 3;
+}
+
+message LicenseCheckRequest {
+    repeated LicenseCheck licenses = 1;
+}
+
+message LicenseCheckAnswer {
+    int32  seq_id     = 1;
+    bool   allowed    = 2;
+    string message_id = 3;
+}
+
+message LicenseCheckResponse {
+    repeated LicenseCheckAnswer answers = 1;
+}
+
+service LicenseService {
+    rpc Check(LicenseCheckRequest) returns (LicenseCheckResponse);
+}

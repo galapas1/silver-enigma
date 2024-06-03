@@ -1,0 +1,103 @@
+{
+    "groups": {
+        "group:example": [
+            "user1@example.com",
+            "user2@example.com"
+        ],
+        "group:example2": [
+            "user1@example.com",
+            "user2@example.com"
+        ]
+    },
+    "hosts": {
+        "example-host-1": "100.100.100.100",
+        "example-host-2": "100.100.101.100/24"
+    },
+    "tagOwners": {
+        "tag:montreal-webserver": [
+            "group:example"
+        ],
+        "tag:production": [
+            "group:example",
+            "president@example.com"
+        ]
+    },
+    "acls": [
+        {
+            "action": "accept",
+            "src": [
+                "group:example2",
+                "192.168.1.0/24"
+            ],
+            "dst": [
+                "*:22,3389",
+                "git-server:*",
+                "ci-server:*"
+            ]
+        },
+        {
+            "action": "accept",
+            "src": [
+                "group:example"
+            ],
+            "dst": [
+                "tag:production:*"
+            ]
+        },
+        {
+            "action": "accept",
+            "src": [
+                "example-host-2"
+            ],
+            "dst": [
+                "example-host-1:*",
+                "192.168.1.0/24:*"
+            ]
+        },
+        {
+            "action": "accept",
+            "src": [
+                "*"
+            ],
+            "dst": [
+                "*:*"
+            ]
+        },
+        {
+            "action": "accept",
+            "src": [
+                "example-host-1"
+            ],
+            "dst": [
+                "tag:montreal-webserver:80,443"
+            ]
+        },
+        {
+            "action": "accept",
+            "src": [
+                "tag:montreal-webserver"
+            ],
+            "dst": [
+                "tag:api-server:443"
+            ]
+        }
+    ],
+    "tests": [
+        {
+            "src": "user1@example.com",
+            "accept": [
+                "example-host-1:22",
+                "example-host-2:80"
+            ],
+            "deny": [
+                "exapmle-host-2:100"
+            ]
+        },
+        {
+            "src": "user2@example.com",
+            "accept": [
+                "100.60.3.4:22"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+syntax = "proto3";
+package ninjapanda.v1;
+option  go_package = "ninjapanda.v1";
+
+message Route {
+    string route_id   = 1;
+    string machine_id = 2;
+    string prefix     = 3;
+    bool   advertised = 4;
+    bool   enabled    = 5;
+    bool   is_primary = 6;
+
+    string          created_at = 7;
+    string          updated_at = 8;
+    optional string deleted_at = 9;
+}
+
+message GetRoutesRequest {
+}
+
+message GetRoutesResponse {
+    repeated Route routes = 1;
+}
+
+message EnableRouteRequest {
+    string route_id = 1;
+}
+
+message EnableRouteResponse {
+}
+
+message DisableRouteRequest {
+    string route_id = 1;
+}
+
+message DisableRouteResponse {
+}
+
+message GetMachineRoutesRequest {
+    string machine_id = 1;
+}
+
+message GetMachineRoutesResponse {
+    repeated Route routes = 1;
+}
+
+message CreateMachineRoutesRequest {
+    string         machine_id = 1;
+    repeated Route routes     = 2;
+}
+
+message CreateMachineRoutesResponse {
+    repeated Route routes = 2;
+}
+
+message UpdateMachineRoutesRequest {
+    string         machine_id = 1;
+    repeated Route routes     = 2;
+}
+
+message UpdateMachineRoutesResponse {
+    repeated Route routes = 2;
+}
+
+message DeleteMachineRouteRequest {
+    string machine_id = 1;
+    string route_id   = 2;
+}
+
+message DeleteMachineRouteResponse {
+}
